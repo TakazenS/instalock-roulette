@@ -1,12 +1,18 @@
 :root {
-  --background: #0f1923;
+  --background: #0a0e14;
+  --foreground: #141920;
+  --text: #ece8e1;
+  --primary: #ff4655;
+  --secondary: #3d1820;
+  --shadow: #1c1c1c;
 }
 
 * {
   margin: 0;
   padding: 0;
+  font-family: Outfit, sans-serif;
 }
 
 body {
-  background: var(--background);
+  background: var(--foreground);
 }

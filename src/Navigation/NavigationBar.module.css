@@ -1,0 +1,15 @@
+.header {
+  place-content: center;
+  place-items: center;
+  background: var(--background);
+  height: 4em;
+  box-shadow: 0 0 15px var(--shadow);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.title {
+  color: var(--text);
+}

@@ -1,14 +1,18 @@
-import { Helmet } from 'react-helmet'
-import { Route, Switch} from "wouter";
-import {useMediaQuery} from "@react-hookz/web";
+import { useMediaQuery } from '@react-hookz/web';
+import { Helmet } from 'react-helmet';
+import { Route, Switch } from 'wouter';
 
-import HomePage from "./Home/HomePage.tsx";
-import ValorantPage from "./Valorant/ValorantPage.tsx";
-import NavigationBar from "./Navigation/NavigationBar.tsx";
+import { assertDefined } from './guards.ts';
+import HomePage from './Home/HomePage.tsx';
+import NavigationBar from './Navigation/NavigationBar.tsx';
+import PageWrapper from './PageWrapper/PageWrapper.tsx';
+import ValorantPage from './Valorant/ValorantPage.tsx';
 
 export default function App() {
   const isDesktop = useMediaQuery(`(min-width: 56.25em)`);
   const isMobile = useMediaQuery(`(max-width: 37.375em)`);
+  assertDefined(isDesktop);
+  assertDefined(isMobile);
 
   return (
     <>
@@ -17,14 +21,17 @@ export default function App() {
         <meta name="description" content="Random Roulette for valorant"/>
       </Helmet>
       <NavigationBar />
-      <Switch>
-        <Route path='/'>
-          <HomePage />
-        </Route>
-        <Route path='/valorant-roulette'>
-          <ValorantPage />
-        </Route>
-      </Switch>
+
+      <PageWrapper isMobile={isMobile}>
+        <Switch>
+          <Route path='/'>
+            <HomePage />
+          </Route>
+          <Route path='/valorant'>
+            <ValorantPage />
+          </Route>
+        </Switch>
+      </PageWrapper>
     </>
   );
 }

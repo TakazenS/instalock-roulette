@@ -1,6 +1,7 @@
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
+import { Link } from 'wouter';
 
-import styles from './HomePage.module.css'
+//import styles from './HomePage.module.css'
 
 export default function HomePage() {
   return (
@@ -10,7 +11,18 @@ export default function HomePage() {
         <meta name="description" content="Random Roulette for video games"/>
       </Helmet>
       <main>
-        Home
+        <section>
+          <div>
+
+          </div>
+          <div>
+            <Link
+              to={'/valorant'}
+            >
+              Valorant roulette
+            </Link>
+          </div>
+        </section>
       </main>
     </>
   );
