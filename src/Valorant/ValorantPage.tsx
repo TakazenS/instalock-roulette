@@ -9,6 +9,7 @@ export default function ValorantPage() {
   const [spinning, setSpinning] = useState(false);
   const [winner, setWinner] = useState<string | null>(null);
   const [resetKey, setResetKey] = useState(0);
+  const [duration, setDuration] = useState(10);
 
   const handleRandomPick = () => {
     if (spinning || winner) return;
@@ -44,18 +45,45 @@ export default function ValorantPage() {
           isSpinning={spinning}
           resetKey={resetKey}
           onFinish={onAnimationComplete}
+          duration={duration}
         />
 
-        <div style={{ marginTop: 20 }}>
-
-          {!spinning && winner ? (
+        <div className={styles.settingsWrapper}>
+          <div className={styles.settings}>
+            <p>Duration in seconds : {duration}</p>
             <button
-              className={styles.btn}
-              onClick={handleReset}
-              style={{ backgroundColor: '#fff', color: '#0f1923' }}
+              disabled={spinning}
+              className={`${styles.btn} ${styles.plus} ${spinning ? `${styles.disabled}` : ''}`}
+              onClick={() => {
+                if (duration === 30) return;
+                setDuration(prev => prev + 1);
+              }}
             >
-              RESET / RETRY
+              +
             </button>
+            <button
+              disabled={spinning}
+              className={`${styles.btn} ${styles.less} ${spinning ? `${styles.disabled}` : ''}`}
+              onClick={() => {
+                if (duration === 1) return;
+                setDuration(prev => prev - 1);
+              }}
+            >
+              -
+            </button>
+          </div>
+        </div>
+
+        <div className={styles.btnContainer}>
+          {!spinning && winner ? (
+            <div className={styles.resetWrapper}>
+              <button
+                className={`${styles.btn} ${styles.reset}`}
+                onClick={handleReset}
+              >
+                RESET
+              </button>
+            </div>
           ) : (
             <button
               className={`${styles.btn} ${spinning ? `${styles.disabled}` : ''}`}
@@ -65,7 +93,6 @@ export default function ValorantPage() {
               {spinning ? 'SPINNING...' : 'LOCK IN AGENT'}
             </button>
           )}
-
         </div>
       </div>
     </>

@@ -1,13 +1,14 @@
 :root {
   --background: #0a0e14;
+  --bg-dark: #0f1923;
   --foreground: #141920;
-  --text: #ece8e1;
+  --val-card-bg: #1f2933;
   --primary: #ff4655;
   --primary-dark: #a81f2d;
   --secondary: #c8aa6e;
   --secondary-dark: #bf8116;
+  --text: #ece8e1;
   --shadow: #1c1c1c;
-  --bg-dark: #0f1923;
 }
 
 * {

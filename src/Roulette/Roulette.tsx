@@ -2,6 +2,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useMemo, useRef } from 'react';
 
 import type { ValorantRouletteProps } from '../models.ts';
+import AgentCard from './AgentCard.tsx';
 import styles from './Roulette.module.css';
 
 const CARD_WIDTH = 200;
@@ -18,20 +19,30 @@ function shuffleArray<T>(array: T[]): T[] {
   return newArr;
 }
 
-export default function Roulette(props: ValorantRouletteProps) {
-  const { agents, winnerId, isSpinning, resetKey, onFinish } = props;
+export default function Roulette(valProps: ValorantRouletteProps) {
+  const { agents, winnerId, isSpinning, resetKey, onFinish, duration } = valProps;
   const controls = useAnimation();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const shuffledAgents = useMemo(() => {
-    if (agents.length === 0) return [];
     return shuffleArray(agents);
   }, [agents, resetKey]);
 
   const visualItems = useMemo(() => {
-    if (shuffledAgents.length === 0) return [];
     return Array.from({ length: MULTIPLIER }).flatMap(() => shuffledAgents);
   }, [shuffledAgents]);
+
+  const cardsList = useMemo(() => {
+    return visualItems.map((agent, index) => (
+      <AgentCard
+        key={`${agent.id}-${index}`}
+        agent={agent}
+        index={index}
+        CARD_WIDTH={CARD_WIDTH}
+        CARD_HEIGHT={CARD_HEIGHT}
+      />
+    ));
+  }, [visualItems]);
 
   useEffect(() => {
     if (isSpinning && winnerId && shuffledAgents.length > 0) {
@@ -44,26 +55,24 @@ export default function Roulette(props: ValorantRouletteProps) {
 
       const winnerPosition = targetIndex * (CARD_WIDTH + CARD_GAP);
 
-      const randomOffset = Math.floor(Math.random() * (CARD_WIDTH * 0.6)) - (CARD_WIDTH * 0.3);
-
       const containerWidth = containerRef.current?.offsetWidth || 0;
       const centerOffset = containerWidth / 2;
 
-      const targetX = -winnerPosition + centerOffset - (CARD_WIDTH / 2) + randomOffset;
+      const targetX = -winnerPosition + centerOffset - (CARD_WIDTH / 2);
 
       controls.start({
         x: targetX,
         transition: {
-          duration: 10,
+          duration: duration,
           ease: [0.15, 0.80, 0.35, 1],
         },
       }).then(() => {
         if (onFinish) onFinish();
       });
-    }else if (!isSpinning && winnerId === null) {
+    } else if (!isSpinning && winnerId === null) {
       controls.set({ x: 0 });
     }
-  }, [isSpinning, winnerId, shuffledAgents, controls, onFinish]);
+  }, [isSpinning, winnerId, shuffledAgents, controls, onFinish, duration]);
 
   return (
     <div className={styles.rouletteContainer}>
@@ -81,24 +90,7 @@ export default function Roulette(props: ValorantRouletteProps) {
         className={styles.track}
         style={{ gap: `${CARD_GAP}px` }}
       >
-        {visualItems.map((agent, index) => (
-          <div
-            key={`${agent.id}-${index}`}
-            className={styles.card}
-            style={{
-              width: `${CARD_WIDTH}px`,
-              height: `${CARD_HEIGHT}px`,
-            }}
-          >
-            <div className={styles.imageContainer}>
-              <img className={styles.agentIcon} src={agent.image} alt={agent.id}/>
-            </div>
-            <div className={styles.infoContainer}>
-              <span className={styles.agentName}>{agent.name}</span>
-              <span className={styles.agentRole}>{agent.role}</span>
-            </div>
-          </div>
-        ))}
+        {cardsList}
       </motion.div>
     </div>
   );

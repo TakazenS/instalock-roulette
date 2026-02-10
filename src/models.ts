@@ -11,4 +11,5 @@ export interface ValorantRouletteProps {
   isSpinning: boolean;
   resetKey: number;
   onFinish?: () => void;
+  duration: number;
 }
