@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { VALORANT_AGENTS } from '../datas.ts';
 import Roulette from '../Roulette/Roulette.tsx';
 import styles from './ValorantPage.module.css';
+import {Helmet} from "react-helmet";
 
 export default function ValorantPage() {
   const [spinning, setSpinning] = useState(false);
@@ -28,38 +29,45 @@ export default function ValorantPage() {
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>VALORANT ROULETTE</h1>
+    <>
+      <Helmet>
+        <title>Random Agent Picker</title>
+        <meta name="description" content="Random agent picker for valorant"/>
+      </Helmet>
 
-      <Roulette
-        agents={VALORANT_AGENTS}
-        winnerId={winner}
-        isSpinning={spinning}
-        resetKey={resetKey}
-        onFinish={onAnimationComplete}
-      />
+      <div className={styles.container}>
+        <h1 className={styles.title}>VALORANT ROULETTE</h1>
 
-      <div style={{ marginTop: 20 }}>
+        <Roulette
+          agents={VALORANT_AGENTS}
+          winnerId={winner}
+          isSpinning={spinning}
+          resetKey={resetKey}
+          onFinish={onAnimationComplete}
+        />
 
-        {!spinning && winner ? (
-          <button
-            className={styles.btn}
-            onClick={handleReset}
-            style={{ backgroundColor: '#fff', color: '#0f1923' }}
-          >
-            RESET / RETRY
-          </button>
-        ) : (
-          <button
-            className={`${styles.btn} ${spinning ? `${styles.disabled}` : ''}`}
-            onClick={handleRandomPick}
-            disabled={spinning}
-          >
-            {spinning ? 'SPINNING...' : 'LOCK IN AGENT'}
-          </button>
-        )}
+        <div style={{ marginTop: 20 }}>
 
+          {!spinning && winner ? (
+            <button
+              className={styles.btn}
+              onClick={handleReset}
+              style={{ backgroundColor: '#fff', color: '#0f1923' }}
+            >
+              RESET / RETRY
+            </button>
+          ) : (
+            <button
+              className={`${styles.btn} ${spinning ? `${styles.disabled}` : ''}`}
+              onClick={handleRandomPick}
+              disabled={spinning}
+            >
+              {spinning ? 'SPINNING...' : 'LOCK IN AGENT'}
+            </button>
+          )}
+
+        </div>
       </div>
-    </div>
+    </>
   );
 }
