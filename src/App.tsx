@@ -22,7 +22,7 @@ export default function App() {
       </Helmet>
       <NavigationBar />
 
-      <PageWrapper isMobile={isMobile}>
+      <PageWrapper>
         <Switch>
           <Route path='/'>
             <HomePage />

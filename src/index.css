@@ -3,7 +3,9 @@
   --foreground: #141920;
   --text: #ece8e1;
   --primary: #ff4655;
-  --secondary: #3d1820;
+  --primary-dark: #a81f2d;
+  --secondary: #c8aa6e;
+  --secondary-dark: #bf8116;
   --shadow: #1c1c1c;
 }
 

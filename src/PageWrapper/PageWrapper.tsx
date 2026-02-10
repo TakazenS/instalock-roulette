@@ -1,14 +1,12 @@
 import type { PropsWithChildren } from 'react';
 
-interface Props {
-  isMobile: boolean;
-}
+import styles from './PageWrapper.module.css';
 
-export default function PageWrapper(props: PropsWithChildren<Props>) {
-  const { isMobile, children } = props;
+export default function PageWrapper(props: PropsWithChildren) {
+  const { children } = props;
 
   return (
-    <main>
+    <main className={styles.main}>
       {children}
     </main>
   );
