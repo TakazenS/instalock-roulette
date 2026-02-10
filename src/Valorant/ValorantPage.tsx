@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 import { VALORANT_AGENTS } from '../datas.ts';
 import Roulette from '../Roulette/Roulette.tsx';
 import styles from './ValorantPage.module.css';
-import {Helmet} from "react-helmet";
 
 export default function ValorantPage() {
   const [spinning, setSpinning] = useState(false);
