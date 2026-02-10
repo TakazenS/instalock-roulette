@@ -17,7 +17,7 @@ export default function App() {
   return (
     <>
       <Helmet>
-        <title>Random Roulette</title>
+        <title>Instalock Roulette</title>
         <meta name="description" content="Random Roulette for valorant"/>
       </Helmet>
       <NavigationBar />

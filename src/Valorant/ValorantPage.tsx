@@ -31,7 +31,7 @@ export default function ValorantPage() {
   return (
     <>
       <Helmet>
-        <title>Random Agent Picker</title>
+        <title>Instalock Roulette | Valorant</title>
         <meta name="description" content="Random agent picker for valorant"/>
       </Helmet>
 
