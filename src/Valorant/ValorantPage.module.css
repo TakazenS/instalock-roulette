@@ -31,6 +31,7 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
+  width: 720px;
   padding: 15px 30px;
   background: var(--bg-dark);
   clip-path: polygon(
@@ -71,6 +72,14 @@
   opacity: 0.7;
 }
 
+.timeSettings {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
 .durationText {
   text-align: center;
 }
@@ -78,6 +87,7 @@
 .settings p {
   font-size: clamp(1rem, 5vw, 1.2rem);
   color: var(--text);
+  width: 210px;
 }
 
 .btnContainer {
@@ -193,13 +203,18 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 800px) {
   .container {
     margin-top: 1.5em;
     gap: 20px;
   }
 
   .settings {
+    flex-direction: column;
+    width: 300px;
+  }
+
+  .timeSettings {
     flex-direction: column;
   }
 
@@ -227,6 +242,10 @@
     padding: 15px 10px;
   }
 
+  .btn.reset {
+    padding: 15px 55px;
+  }
+
   .historyChips {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -235,5 +254,11 @@
 @media (max-width: 500px) {
   .historyChips {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .settings {
+    width: 200px;
   }
 }

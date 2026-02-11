@@ -154,34 +154,36 @@ export default function ValorantPage() {
               </div>
             </div>
             <span className={styles.divider} />
-            <p className={styles.durationText}>Duration in seconds : {duration}</p>
-            <button
-              disabled={spinning}
-              className={`${styles.btn} ${styles.plus} ${spinning ? `${styles.disabled}` : ''}`}
-              onClick={() => {
-                if (duration === 30) return;
-                setDuration(prev => prev + 1);
-              }}
-            >
-              +
-            </button>
-            <button
-              disabled={spinning}
-              className={`${styles.btn} ${styles.less} ${spinning ? `${styles.disabled}` : ''}`}
-              onClick={() => {
-                if (duration === 1) return;
-                setDuration(prev => prev - 1);
-              }}
-            >
-              -
-            </button>
-            <button
-              disabled={spinning}
-              className={`${styles.reloadBtn} ${spinning ? `${styles.disabled}` : ''}`}
-              onClick={() => setDuration(DEFAULT_DURATION)}
-            >
-              <TbReload className={`${styles.reloadIcon} ${spinning ? `${styles.disabled}` : ''}`} />
-            </button>
+            <div className={styles.timeSettings}>
+              <p className={styles.durationText}>Duration in seconds : {duration}</p>
+              <button
+                disabled={spinning}
+                className={`${styles.btn} ${styles.plus} ${spinning ? `${styles.disabled}` : ''}`}
+                onClick={() => {
+                  if (duration === 30) return;
+                  setDuration(prev => prev + 1);
+                }}
+              >
+                +
+              </button>
+              <button
+                disabled={spinning}
+                className={`${styles.btn} ${styles.less} ${spinning ? `${styles.disabled}` : ''}`}
+                onClick={() => {
+                  if (duration === 1) return;
+                  setDuration(prev => prev - 1);
+                }}
+              >
+                -
+              </button>
+              <button
+                disabled={spinning}
+                className={`${styles.reloadBtn} ${spinning ? `${styles.disabled}` : ''}`}
+                onClick={() => setDuration(DEFAULT_DURATION)}
+              >
+                <TbReload className={`${styles.reloadIcon} ${spinning ? `${styles.disabled}` : ''}`} />
+              </button>
+            </div>
           </div>
         </div>
 

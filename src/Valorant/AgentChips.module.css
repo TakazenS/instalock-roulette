@@ -52,8 +52,11 @@
 }
 
 .btnContainer {
-  place-content: center;
-  place-items: center;
+  margin-right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
   height: 100%;
   width: 100%;
 }
