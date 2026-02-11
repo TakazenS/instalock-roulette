@@ -67,12 +67,40 @@
 }
 
 .btn.plus, .btn.less {
-  padding: 5px 20px;
+  padding: 2px 10px;
   clip-path: polygon(50% 0, 100% 0, 100% 70%, 50% 100%, 0 100%, 0 30%);
 }
 
 .btn.plus:hover, .btn.less:hover {
   transform: scale(105%);
+}
+
+.reloadBtn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.reloadBtn.disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+
+.reloadIcon {
+  color: var(--text);
+  font-size: 25px;
+  transform: rotateZ(-90deg);
+  transition: 0.3s ease-in-out;
+}
+
+.reloadIcon:hover {
+  transform: rotateZ(280deg) scale(110%);
+}
+
+.reloadIcon.disabled {
+  opacity: 0.5;
 }
 
 .btn.disabled {
@@ -117,7 +145,7 @@
 }
 
 
-@media (max-width: 950px) {
+@media (max-width: 1100px) {
   .historyChips {
     flex-direction: column;
   }

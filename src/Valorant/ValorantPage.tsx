@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { TbReload } from "react-icons/tb";
 
 import { VALORANT_AGENTS } from '../datas.ts';
 import type { Agent } from '../models.ts';
@@ -7,11 +8,13 @@ import AgentChips from './AgentChips.tsx';
 import Roulette from './Roulette.tsx';
 import styles from './ValorantPage.module.css';
 
+const DEFAULT_DURATION = 5;
+
 export default function ValorantPage() {
   const [spinning, setSpinning] = useState(false);
   const [winner, setWinner] = useState<string | null>(null);
   const [resetKey, setResetKey] = useState(0);
-  const [duration, setDuration] = useState(10);
+  const [duration, setDuration] = useState(DEFAULT_DURATION);
   const [history, setHistory] = useState<Agent[]>(() => {
     const saved = localStorage.getItem('valorant_history');
     return saved ? JSON.parse(saved) : [];
@@ -92,6 +95,13 @@ export default function ValorantPage() {
             >
               -
             </button>
+            <button
+              disabled={spinning}
+              className={`${styles.reloadBtn} ${spinning ? `${styles.disabled}` : ''}`}
+              onClick={() => setDuration(DEFAULT_DURATION)}
+            >
+              <TbReload className={`${styles.reloadIcon} ${spinning ? `${styles.disabled}` : ''}`} />
+            </button>
           </div>
         </div>
 
@@ -123,8 +133,13 @@ export default function ValorantPage() {
             )}
           </div>
           <div className={styles.historyChips}>
-            {history.map((agent) => (
-              <AgentChips key={agent.id} agent={agent} />
+            {history.map((agent, index) => (
+              <AgentChips
+                key={`${agent.id}-${index}`}
+                agent={agent}
+                history={history}
+                setHistory={setHistory}
+                index={index} />
             ))}
           </div>
         </div>
