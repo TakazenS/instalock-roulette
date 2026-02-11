@@ -17,6 +17,10 @@
   font-family: Outfit, sans-serif;
 }
 
+html {
+  background-color: var(--bg-dark);
+}
+
 body {
   background: radial-gradient(circle at center, #1f2933 0%, var(--bg-dark) 100%);
 }
