@@ -50,7 +50,7 @@ export default function ValorantPage() {
 
   const handleRandomPick = () => {
     if (!isAtLeastOneSelected) {
-      alert('Il faut au moins sélectionner une classe');
+      alert('You have to check at least one role');
       return;
     }
 
