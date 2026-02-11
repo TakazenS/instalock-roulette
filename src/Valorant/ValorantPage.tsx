@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { VALORANT_AGENTS } from '../datas.ts';
-import Roulette from '../Roulette/Roulette.tsx';
+import type { Agent } from '../models.ts';
+import AgentChips from './AgentChips.tsx';
+import Roulette from './Roulette.tsx';
 import styles from './ValorantPage.module.css';
 
 export default function ValorantPage() {
@@ -10,6 +12,14 @@ export default function ValorantPage() {
   const [winner, setWinner] = useState<string | null>(null);
   const [resetKey, setResetKey] = useState(0);
   const [duration, setDuration] = useState(10);
+  const [history, setHistory] = useState<Agent[]>(() => {
+    const saved = localStorage.getItem('valorant_history');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('valorant_history', JSON.stringify(history));
+  }, [history]);
 
   const handleRandomPick = () => {
     if (spinning || winner) return;
@@ -27,6 +37,17 @@ export default function ValorantPage() {
 
   const onAnimationComplete = () => {
     setSpinning(false);
+    if (winner) {
+      const winningAgent = VALORANT_AGENTS.find(a => a.id === winner);
+      if (winningAgent) {
+        if (history.length >= 5) {
+          history.pop();
+        }
+        setHistory((prevHistory) => {
+          return [winningAgent, ...prevHistory].slice(0, 5);
+        });
+      }
+    }
   };
 
   return (
@@ -93,6 +114,19 @@ export default function ValorantPage() {
               {spinning ? 'SPINNING...' : 'LOCK IN AGENT'}
             </button>
           )}
+        </div>
+
+        <div className={styles.history}>
+          <div>
+            {history.length > 0 && (
+              <h2 className={styles.historyTitle}>History</h2>
+            )}
+          </div>
+          <div className={styles.historyChips}>
+            {history.map((agent) => (
+              <AgentChips key={agent.id} agent={agent} />
+            ))}
+          </div>
         </div>
       </div>
     </>

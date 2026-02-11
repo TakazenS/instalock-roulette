@@ -8,7 +8,7 @@ import styles from './Roulette.module.css';
 const CARD_WIDTH = 200;
 const CARD_HEIGHT = 260;
 const CARD_GAP = 15;
-const MULTIPLIER = 30;
+const MULTIPLIER = 25;
 
 function shuffleArray<T>(array: T[]): T[] {
   const newArr = [...array];
@@ -55,10 +55,12 @@ export default function Roulette(valProps: ValorantRouletteProps) {
 
       const winnerPosition = targetIndex * (CARD_WIDTH + CARD_GAP);
 
+      const randomOffset = Math.floor(Math.random() * (CARD_WIDTH * 0.6)) - (CARD_WIDTH * 0.3);
+
       const containerWidth = containerRef.current?.offsetWidth || 0;
       const centerOffset = containerWidth / 2;
 
-      const targetX = -winnerPosition + centerOffset - (CARD_WIDTH / 2);
+      const targetX = -winnerPosition + centerOffset - (CARD_WIDTH / 2) + randomOffset;
 
       controls.start({
         x: targetX,

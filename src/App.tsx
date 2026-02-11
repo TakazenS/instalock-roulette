@@ -5,6 +5,7 @@ import { Route, Switch } from 'wouter';
 import { assertDefined } from './guards.ts';
 import HomePage from './Home/HomePage.tsx';
 import NavigationBar from './Navigation/NavigationBar.tsx';
+import NotFound404 from './NotFound404/NotFound404.tsx';
 import PageWrapper from './PageWrapper/PageWrapper.tsx';
 import ValorantPage from './Valorant/ValorantPage.tsx';
 
@@ -29,6 +30,9 @@ export default function App() {
           </Route>
           <Route path='/valorant'>
             <ValorantPage />
+          </Route>
+          <Route path="*">
+            <NotFound404 />
           </Route>
         </Switch>
       </PageWrapper>
