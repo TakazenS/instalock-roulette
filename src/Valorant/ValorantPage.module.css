@@ -1,5 +1,5 @@
 .container {
-  margin-top: 3em;
+  margin: 2em 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,6 +71,10 @@
   clip-path: polygon(50% 0, 100% 0, 100% 70%, 50% 100%, 0 100%, 0 30%);
 }
 
+.btn.plus:hover, .btn.less:hover {
+  transform: scale(105%);
+}
+
 .btn.disabled {
   background-color: #555;
   cursor: not-allowed;
@@ -89,6 +93,34 @@
 .btn.reset {
   background-color: var(--text);
   color: var(--bg-dark);
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.historyTitle {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  color: var(--text);
+}
+
+.historyChips {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+
+@media (max-width: 950px) {
+  .historyChips {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 480px) {

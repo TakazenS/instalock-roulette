@@ -1,0 +1,44 @@
+.containerWrapper {
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
+  display: inline-block;
+}
+
+.container {
+  color: var(--text);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(
+    10% 0, 100% 0,
+    100% 100%, 0 100%,
+    0 20%
+  );
+  transition: 0.3s ease-in-out;
+}
+
+.container:hover {
+  transform: scale(105%);
+}
+
+.agentIcon {
+  background: radial-gradient(circle at center, #2a3b4e 0%, #1f2933 100%);
+  width: 60px;
+  height: 60px;
+}
+
+.agentInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 15px;
+  background: var(--bg-dark);
+  height: 60px;
+}
+
+.name {
+  color: var(--text);
+  font-weight: 800;
+  text-transform: uppercase;
+}
