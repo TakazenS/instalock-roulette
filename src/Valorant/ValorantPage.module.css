@@ -33,7 +33,46 @@
   gap: 15px;
   padding: 15px 30px;
   background: var(--bg-dark);
-  clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+  clip-path: polygon(
+    20px 0,                /* Coin Haut-Gauche (début) */
+    100% 0,                /* Coin Haut-Droit (carré) */
+    100% calc(100% - 20px),/* Coin Bas-Droit (début coupe) */
+    calc(100% - 20px) 100%,/* Coin Bas-Droit (fin coupe) */
+    0 100%,                /* Coin Bas-Gauche (carré) */
+    0 20px                 /* Coin Haut-Gauche (fin) */
+  );
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.classeContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.classes {
+  width: 25px;
+  height: 25px;
+}
+
+.divider {
+  width: 1px;
+  height: 25px;
+  background-color: var(--text);
+  opacity: 0.7;
+}
+
+.durationText {
+  text-align: center;
 }
 
 .settings p {
@@ -75,6 +114,10 @@
   transform: scale(105%);
 }
 
+.btn.plus.disabled, .btn.less.disabled {
+  transform: none;
+}
+
 .reloadBtn {
   display: flex;
   align-items: center;
@@ -101,6 +144,7 @@
 
 .reloadIcon.disabled {
   opacity: 0.5;
+  transform: none;
 }
 
 .btn.disabled {
@@ -137,21 +181,19 @@
 }
 
 .historyChips {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 30px;
 }
 
 
-@media (max-width: 1100px) {
+@media (max-width: 1250px) {
   .historyChips {
-    flex-direction: column;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 750px) {
   .container {
     margin-top: 1.5em;
     gap: 20px;
@@ -161,14 +203,37 @@
     flex-direction: column;
   }
 
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--text);
+    opacity: 0.7;
+  }
+
   .btn.plus, .btn.less {
     padding: 5px 10px;
-    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    clip-path: polygon(10% 0, 100% 0, 100% 50%, 90% 100%, 0 100%, 0 50%);
   }
 
   .btn {
     width: 100%;
     font-size: 1rem;
     padding: 15px 10px;
+  }
+
+  .historyChips {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .historyChips {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

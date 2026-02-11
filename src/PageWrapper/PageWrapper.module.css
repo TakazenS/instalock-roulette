@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-@media (min-width: 56.25em) {
+@media (min-width: 1300px) {
   .main {
     margin: 0 15em;
   }

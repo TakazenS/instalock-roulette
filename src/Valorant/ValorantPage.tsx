@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { TbReload } from "react-icons/tb";
+import { TbReload } from 'react-icons/tb';
 
+import SwitchBtn from '../Assets/SwitchBtn.tsx';
 import { VALORANT_AGENTS } from '../datas.ts';
 import type { Agent } from '../models.ts';
 import AgentChips from './AgentChips.tsx';
@@ -19,16 +20,44 @@ export default function ValorantPage() {
     const saved = localStorage.getItem('valorant_history');
     return saved ? JSON.parse(saved) : [];
   });
+  const [filters, setFilters] = useState({
+    duelist: true,
+    initiator: true,
+    controller: true,
+    sentinel: true,
+  });
 
   useEffect(() => {
     localStorage.setItem('valorant_history', JSON.stringify(history));
   }, [history]);
 
+  const filteredAgents = useMemo(() => {
+    return VALORANT_AGENTS.filter((agent) => {
+      const roleKey = agent.role.toLowerCase() as keyof typeof filters;
+      return filters[roleKey];
+    });
+  }, [filters]);
+
+  const toggleFilter = (role: keyof typeof filters) => {
+    if (spinning) return;
+    setFilters(prev => ({
+      ...prev,
+      [role]: !prev[role]
+    }));
+  };
+
+  const isAtLeastOneSelected = Object.values(filters).some(val => val);
+
   const handleRandomPick = () => {
+    if (!isAtLeastOneSelected) {
+      alert('Il faut au moins sélectionner une classe');
+      return;
+    }
+
     if (spinning || winner) return;
 
-    const randomIndex = Math.floor(Math.random() * VALORANT_AGENTS.length);
-    setWinner(VALORANT_AGENTS[randomIndex].id);
+    const randomIndex = Math.floor(Math.random() * filteredAgents.length);
+    setWinner(filteredAgents[randomIndex].id);
     setSpinning(true);
   };
 
@@ -43,11 +72,11 @@ export default function ValorantPage() {
     if (winner) {
       const winningAgent = VALORANT_AGENTS.find(a => a.id === winner);
       if (winningAgent) {
-        if (history.length >= 5) {
+        if (history.length >= 10) {
           history.pop();
         }
         setHistory((prevHistory) => {
-          return [winningAgent, ...prevHistory].slice(0, 5);
+          return [winningAgent, ...prevHistory].slice(0, 10);
         });
       }
     }
@@ -64,7 +93,7 @@ export default function ValorantPage() {
         <h1 className={styles.title}>VALORANT ROULETTE</h1>
 
         <Roulette
-          agents={VALORANT_AGENTS}
+          agents={filteredAgents}
           winnerId={winner}
           isSpinning={spinning}
           resetKey={resetKey}
@@ -74,7 +103,58 @@ export default function ValorantPage() {
 
         <div className={styles.settingsWrapper}>
           <div className={styles.settings}>
-            <p>Duration in seconds : {duration}</p>
+            <div className={styles.grid}>
+              <div className={styles.classeContainer}>
+                <img
+                  src="/img/valorant/classes/duelist.png"
+                  alt="duelist"
+                  className={styles.classes}
+                />
+                <SwitchBtn
+                  winner={winner}
+                  isOn={filters.duelist}
+                  onToggle={() => toggleFilter('duelist')}
+                />
+              </div>
+              <div className={styles.classeContainer}>
+                <img
+                  src="/img/valorant/classes/initiator.png"
+                  alt="initiator"
+                  className={styles.classes}
+                />
+                <SwitchBtn
+                  winner={winner}
+                  isOn={filters.initiator}
+                  onToggle={() => toggleFilter('initiator')}
+                />
+              </div>
+              <div className={styles.classeContainer}>
+                <img
+                  src="/img/valorant/classes/controller.png"
+                  alt="controller"
+                  className={styles.classes}
+                />
+                <SwitchBtn
+                  winner={winner}
+                  isOn={filters.controller}
+                  onToggle={() => toggleFilter('controller')}
+                />
+              </div>
+              <div className={styles.classeContainer}>
+                <img
+                  src="/img/valorant/classes/sentinel.png"
+                  alt="sentinel"
+                  className={styles.classes}
+                />
+                <SwitchBtn
+                  winner={winner}
+                  isOn={filters.sentinel}
+                  onToggle={() => toggleFilter('sentinel')}
+                />
+              </div>
+            </div>
+            <span className={styles.divider} />
+            <p className={styles.durationText}>Duration in seconds : {duration}</p>
             <button
               disabled={spinning}
               className={`${styles.btn} ${styles.plus} ${spinning ? `${styles.disabled}` : ''}`}
