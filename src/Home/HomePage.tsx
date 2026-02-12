@@ -8,7 +8,7 @@ export default function HomePage() {
     <>
       <Helmet>
         <title>Instalock Roulette | Valorant & Lol Roulette</title>
-        <meta name="description" content="Random character picker for valorant and league of legends"/>
+        <meta name="description" content="Random agent/champion roulette for valorant & league of legends"/>
       </Helmet>
 
       <section className={styles.section}>
