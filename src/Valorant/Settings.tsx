@@ -15,13 +15,14 @@ interface Props {
   filters: Filters;
   toggleFilter: (role: keyof Filters) => void;
   spinning: boolean;
+  winner: string | null;
   duration: number;
   setDuration: React.Dispatch<React.SetStateAction<number>>;
   DEFAULT_DURATION: number;
 }
 
 export default function Settings(props: Props) {
-  const { filters, toggleFilter, spinning, duration, setDuration, DEFAULT_DURATION } = props;
+  const { filters, toggleFilter, spinning, winner, duration, setDuration, DEFAULT_DURATION } = props;
 
   return (
     <>
@@ -35,7 +36,7 @@ export default function Settings(props: Props) {
                 className={styles.classes}
               />
               <SwitchBtn
-                spinning={spinning}
+                winner={winner}
                 isOn={filters.duelist}
                 onToggle={() => toggleFilter('duelist')}
               />
@@ -47,7 +48,7 @@ export default function Settings(props: Props) {
                 className={styles.classes}
               />
               <SwitchBtn
-                spinning={spinning}
+                winner={winner}
                 isOn={filters.initiator}
                 onToggle={() => toggleFilter('initiator')}
               />
@@ -59,7 +60,7 @@ export default function Settings(props: Props) {
                 className={styles.classes}
               />
               <SwitchBtn
-                spinning={spinning}
+                winner={winner}
                 isOn={filters.controller}
                 onToggle={() => toggleFilter('controller')}
               />
@@ -71,7 +72,7 @@ export default function Settings(props: Props) {
                 className={styles.classes}
               />
               <SwitchBtn
-                spinning={spinning}
+                winner={winner}
                 isOn={filters.sentinel}
                 onToggle={() => toggleFilter('sentinel')}
               />

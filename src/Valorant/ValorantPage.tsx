@@ -104,6 +104,7 @@ export default function ValorantPage() {
           filters={filters}
           toggleFilter={toggleFilter}
           spinning={spinning}
+          winner={winner}
           duration={duration}
           setDuration={setDuration}
           DEFAULT_DURATION={DEFAULT_DURATION}

@@ -3,23 +3,28 @@ import { motion } from 'framer-motion';
 import styles from './SwitchBtn.module.css';
 
 interface Props {
-  spinning: boolean;
+  winner: string | null;
   isOn: boolean;
   onToggle: () => void;
 }
 
 export default function SwitchBtn(props: Props) {
-  const { spinning, isOn, onToggle } = props;
+  const { winner, isOn, onToggle } = props;
+
+  let hasWinner = false;
+  if (winner) {
+    hasWinner = true;
+  }
 
   return (
     <div
-      className={`${styles.switch} ${isOn ? styles.on : styles.off} ${spinning ? `${styles.disabled}` : ''}`}
-      onClick={() => !spinning && onToggle()}
+      className={`${styles.switch} ${isOn ? styles.on : styles.off} ${hasWinner ? `${styles.disabled}` : ''}`}
+      onClick={() => !hasWinner && onToggle()}
     >
       <motion.button
-        className={`${styles.handle} ${spinning ? `${styles.disabled}` : ''}`}
+        className={`${styles.handle} ${hasWinner ? `${styles.disabled}` : ''}`}
         layout
-        disabled={spinning}
+        disabled={hasWinner}
         transition={{
           type: 'spring',
           stiffness: 700,
