@@ -24,3 +24,19 @@ html {
 body {
   background: radial-gradient(circle at center, #1f2933 0%, var(--bg-dark) 100%);
 }
+
+.valBtn {
+  background-color: var(--primary);
+  color: var(--text);
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  position: relative;
+  transition: 0.3s ease-in-out;
+  box-shadow: none;
+  clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+}
