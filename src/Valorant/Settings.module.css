@@ -1,0 +1,128 @@
+.settingsWrapper {
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
+  display: inline-block;
+}
+
+.settings {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 720px;
+  padding: 15px 30px;
+  background: var(--bg-dark);
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  clip-path: polygon(
+    20px 0,                /* Coin Haut-Gauche (début) */
+    100% 0,                /* Coin Haut-Droit (carré) */
+    100% calc(100% - 20px),/* Coin Bas-Droit (début coupe) */
+    calc(100% - 20px) 100%,/* Coin Bas-Droit (fin coupe) */
+    0 100%,                /* Coin Bas-Gauche (carré) */
+    0 20px                 /* Coin Haut-Gauche (fin) */
+  );
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.classeContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.classes {
+  width: 25px;
+  height: 25px;
+}
+
+.divider {
+  width: 1px;
+  height: 25px;
+  background-color: var(--text);
+  opacity: 0.7;
+}
+
+.timeSettings {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.durationText {
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  color: var(--text);
+  width: 205px;
+}
+
+.btnContainer {
+  margin-top: 10px;
+}
+
+.btn {
+  composes: valBtn from '/src/index.css';
+}
+
+.btn:hover {
+  background-color: #ff2b3d;
+  transform: translateY(-2px);
+}
+
+.btn.disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn.plus, .btn.less {
+  padding: 2px 10px;
+  clip-path: polygon(50% 0, 100% 0, 100% 70%, 50% 100%, 0 100%, 0 30%);
+}
+
+.btn.plus:hover, .btn.less:hover {
+  transform: scale(105%);
+}
+
+.btn.plus.disabled, .btn.less.disabled {
+  transform: none;
+}
+
+.reloadBtn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.reloadBtn.disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+
+.reloadIcon {
+  color: var(--text);
+  font-size: 25px;
+  transform: rotateZ(-90deg);
+  transition: 0.3s ease-in-out;
+}
+
+.reloadIcon:hover {
+  transform: rotateZ(280deg) scale(110%);
+}
+
+.reloadIcon.disabled {
+  opacity: 0.5;
+  transform: none;
+}
