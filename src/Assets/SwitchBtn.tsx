@@ -11,18 +11,18 @@ interface Props {
 export default function SwitchBtn(props: Props) {
   const { winner, isOn, onToggle } = props;
 
-  let hasWinner;
+  let hasWinner = false;
   if (winner) {
     hasWinner = true;
   }
 
   return (
     <div
-      className={`${styles.switch} ${isOn ? styles.on : styles.off} ${winner ? `${styles.disabled}` : ''}`}
-      onClick={() => !winner && onToggle()}
+      className={`${styles.switch} ${isOn ? styles.on : styles.off} ${hasWinner ? `${styles.disabled}` : ''}`}
+      onClick={() => !hasWinner && onToggle()}
     >
       <motion.button
-        className={`${styles.handle} ${winner ? `${styles.disabled}` : ''}`}
+        className={`${styles.handle} ${hasWinner ? `${styles.disabled}` : ''}`}
         layout
         disabled={hasWinner}
         transition={{
