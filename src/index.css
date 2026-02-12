@@ -18,10 +18,12 @@
 }
 
 html {
+  height: 100vh;
   background-color: var(--bg-dark);
 }
 
 body {
+  flex: 1;
   background: radial-gradient(circle at center, #1f2933 0%, var(--bg-dark) 100%);
 }
 

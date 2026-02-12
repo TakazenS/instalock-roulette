@@ -2,18 +2,12 @@ import * as React from 'react';
 import { TbReload } from 'react-icons/tb';
 
 import SwitchBtn from '../Assets/SwitchBtn.tsx';
+import type { ValFilters } from '../models.ts';
 import styles from './Settings.module.css';
 
-interface Filters {
-  duelist: boolean;
-  initiator: boolean;
-  controller: boolean;
-  sentinel: boolean;
-}
-
 interface Props {
-  filters: Filters;
-  toggleFilter: (role: keyof Filters) => void;
+  filters: ValFilters;
+  toggleFilter: (role: keyof ValFilters) => void;
   spinning: boolean;
   winner: string | null;
   duration: number;
@@ -37,6 +31,7 @@ export default function Settings(props: Props) {
               />
               <SwitchBtn
                 winner={winner}
+                filters={filters}
                 isOn={filters.duelist}
                 onToggle={() => toggleFilter('duelist')}
               />
@@ -49,6 +44,7 @@ export default function Settings(props: Props) {
               />
               <SwitchBtn
                 winner={winner}
+                filters={filters}
                 isOn={filters.initiator}
                 onToggle={() => toggleFilter('initiator')}
               />
@@ -61,6 +57,7 @@ export default function Settings(props: Props) {
               />
               <SwitchBtn
                 winner={winner}
+                filters={filters}
                 isOn={filters.controller}
                 onToggle={() => toggleFilter('controller')}
               />
@@ -73,6 +70,7 @@ export default function Settings(props: Props) {
               />
               <SwitchBtn
                 winner={winner}
+                filters={filters}
                 isOn={filters.sentinel}
                 onToggle={() => toggleFilter('sentinel')}
               />
@@ -83,7 +81,16 @@ export default function Settings(props: Props) {
             <p className={styles.durationText}>Duration in seconds : {duration}</p>
             <button
               disabled={spinning}
-              className={`${styles.btn} ${styles.plus} ${spinning ? `${styles.disabled}` : ''}`}
+              style={{
+                cursor: duration === 30 || spinning ? 'not-allowed' : 'pointer',
+                opacity: duration === 30 || spinning ? 0.5 : 1,
+                transform: duration === 30 || spinning ? 'none' : '',
+              }}
+              className={`
+                ${styles.btn}
+                ${styles.plus}
+                ${spinning ? `${styles.disabled}` : ''}
+              `}
               onClick={() => {
                 if (duration === 30) return;
                 setDuration(prev => prev + 1);
@@ -93,7 +100,16 @@ export default function Settings(props: Props) {
             </button>
             <button
               disabled={spinning}
-              className={`${styles.btn} ${styles.less} ${spinning ? `${styles.disabled}` : ''}`}
+              style={{
+                cursor: duration === 1 || spinning ? 'not-allowed' : 'pointer',
+                opacity: duration === 1 || spinning ? 0.5 : 1,
+                transform: duration === 1 || spinning ? 'none' : '',
+              }}
+              className={`
+                ${styles.btn}
+                ${styles.less}
+                ${spinning ? `${styles.disabled}` : ''}
+              `}
               onClick={() => {
                 if (duration === 1) return;
                 setDuration(prev => prev - 1);
@@ -103,7 +119,10 @@ export default function Settings(props: Props) {
             </button>
             <button
               disabled={spinning}
-              className={`${styles.reloadBtn} ${spinning ? `${styles.disabled}` : ''}`}
+              className={`
+                ${styles.reloadBtn}
+                ${spinning ? `${styles.disabled}` : ''}
+              `}
               onClick={() => setDuration(DEFAULT_DURATION)}
             >
               <TbReload className={`${styles.reloadIcon} ${spinning ? `${styles.disabled}` : ''}`} />

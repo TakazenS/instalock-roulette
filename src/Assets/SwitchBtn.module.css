@@ -20,7 +20,6 @@
 }
 
 .switch.disabled {
-  background-color: #555;
   cursor: not-allowed;
 }
 
