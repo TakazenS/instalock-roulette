@@ -81,10 +81,6 @@
 }
 
 .durationText {
-  text-align: center;
-}
-
-.settings p {
   font-size: clamp(1rem, 5vw, 1.2rem);
   color: var(--text);
   width: 210px;
