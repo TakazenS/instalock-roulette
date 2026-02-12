@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import * as React from 'react';
 import { RxCross2 } from 'react-icons/rx';
 
@@ -9,10 +10,11 @@ interface Props {
   history: Agent[];
   setHistory: React.Dispatch<React.SetStateAction<Agent[]>>;
   index: number;
+  isNew: boolean;
 }
 
 export default function AgentChips(props: Props) {
-  const { agent, history, setHistory, index } = props;
+  const { agent, history, setHistory, index, isNew } = props;
 
   const handleCrossClicked = () => {
     const newHistory = history.filter((_, i) => i !== index);
@@ -21,7 +23,17 @@ export default function AgentChips(props: Props) {
 
   return (
     <>
-      <div className={styles.containerWrapper}>
+      <motion.div
+        initial={isNew ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }}
+        animate={isNew ? { opacity: 1, scale: 1 } : { scale: 1 }}
+        transition={{
+          type: 'spring',
+          stiffness: 300,
+          damping: 20,
+          duration: 1
+        }}
+        className={styles.containerWrapper}
+      >
         <div className={styles.container}>
           <img src={agent.image} alt={agent.id} className={styles.agentIcon}/>
           <div className={styles.agentInfo}>
@@ -36,7 +48,7 @@ export default function AgentChips(props: Props) {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
