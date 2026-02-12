@@ -34,8 +34,9 @@
 }
 
 .btn.disabled {
-  background-color: #555;
+  opacity: 0.5;
   cursor: not-allowed;
+  background-color: var(--primary);
   transform: none;
 }
 

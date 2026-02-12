@@ -13,3 +13,10 @@ export interface ValorantRouletteProps {
   onFinish?: () => void;
   duration: number;
 }
+
+export interface ValFilters {
+  duelist: boolean;
+  initiator: boolean;
+  controller: boolean;
+  sentinel: boolean;
+}

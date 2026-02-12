@@ -46,7 +46,6 @@ export default function ValorantPage() {
   };
 
   const isAtLeastOneSelected = Object.values(filters).some(val => val);
-
   const handleRandomPick = () => {
     if (!isAtLeastOneSelected) {
       alert('You have to check at least one role');
@@ -122,7 +121,10 @@ export default function ValorantPage() {
             </div>
           ) : (
             <button
-              className={`${styles.btn} ${spinning ? `${styles.disabled}` : ''}`}
+              className={`
+                ${styles.btn}
+                ${spinning ? `${styles.disabled}` : ''}
+              `}
               onClick={handleRandomPick}
               disabled={spinning}
             >

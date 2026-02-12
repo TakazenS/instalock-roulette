@@ -80,7 +80,6 @@
 }
 
 .btn.disabled {
-  background-color: #555;
   cursor: not-allowed;
   transform: none;
 }
@@ -95,6 +94,7 @@
 }
 
 .btn.plus.disabled, .btn.less.disabled {
+  background-color: var(--primary);
   transform: none;
 }
 
