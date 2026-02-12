@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { TbReload } from 'react-icons/tb';
 
-import SwitchBtn from '../Assets/SwitchBtn.tsx';
 import { VALORANT_AGENTS } from '../datas.ts';
 import type { Agent } from '../models.ts';
 import AgentChips from './AgentChips.tsx';
 import Roulette from './Roulette.tsx';
+import Settings from './Settings.tsx';
 import styles from './ValorantPage.module.css';
 
 const DEFAULT_DURATION = 5;
@@ -101,91 +100,14 @@ export default function ValorantPage() {
           duration={duration}
         />
 
-        <div className={styles.settingsWrapper}>
-          <div className={styles.settings}>
-            <div className={styles.grid}>
-              <div className={styles.classeContainer}>
-                <img
-                  src="/img/valorant/classes/duelist.png"
-                  alt="duelist"
-                  className={styles.classes}
-                />
-                <SwitchBtn
-                  winner={winner}
-                  isOn={filters.duelist}
-                  onToggle={() => toggleFilter('duelist')}
-                />
-              </div>
-              <div className={styles.classeContainer}>
-                <img
-                  src="/img/valorant/classes/initiator.png"
-                  alt="initiator"
-                  className={styles.classes}
-                />
-                <SwitchBtn
-                  winner={winner}
-                  isOn={filters.initiator}
-                  onToggle={() => toggleFilter('initiator')}
-                />
-              </div>
-              <div className={styles.classeContainer}>
-                <img
-                  src="/img/valorant/classes/controller.png"
-                  alt="controller"
-                  className={styles.classes}
-                />
-                <SwitchBtn
-                  winner={winner}
-                  isOn={filters.controller}
-                  onToggle={() => toggleFilter('controller')}
-                />
-              </div>
-              <div className={styles.classeContainer}>
-                <img
-                  src="/img/valorant/classes/sentinel.png"
-                  alt="sentinel"
-                  className={styles.classes}
-                />
-                <SwitchBtn
-                  winner={winner}
-                  isOn={filters.sentinel}
-                  onToggle={() => toggleFilter('sentinel')}
-                />
-              </div>
-            </div>
-            <span className={styles.divider} />
-            <div className={styles.timeSettings}>
-              <p className={styles.durationText}>Duration in seconds : {duration}</p>
-              <button
-                disabled={spinning}
-                className={`${styles.btn} ${styles.plus} ${spinning ? `${styles.disabled}` : ''}`}
-                onClick={() => {
-                  if (duration === 30) return;
-                  setDuration(prev => prev + 1);
-                }}
-              >
-                +
-              </button>
-              <button
-                disabled={spinning}
-                className={`${styles.btn} ${styles.less} ${spinning ? `${styles.disabled}` : ''}`}
-                onClick={() => {
-                  if (duration === 1) return;
-                  setDuration(prev => prev - 1);
-                }}
-              >
-                -
-              </button>
-              <button
-                disabled={spinning}
-                className={`${styles.reloadBtn} ${spinning ? `${styles.disabled}` : ''}`}
-                onClick={() => setDuration(DEFAULT_DURATION)}
-              >
-                <TbReload className={`${styles.reloadIcon} ${spinning ? `${styles.disabled}` : ''}`} />
-              </button>
-            </div>
-          </div>
-        </div>
+        <Settings
+          filters={filters}
+          toggleFilter={toggleFilter}
+          spinning={spinning}
+          duration={duration}
+          setDuration={setDuration}
+          DEFAULT_DURATION={DEFAULT_DURATION}
+        />
 
         <div className={styles.btnContainer}>
           {!spinning && winner ? (
@@ -221,7 +143,9 @@ export default function ValorantPage() {
                 agent={agent}
                 history={history}
                 setHistory={setHistory}
-                index={index} />
+                index={index}
+                isNew={index === 0}
+              />
             ))}
           </div>
         </div>
