@@ -5,6 +5,7 @@
   --val-card-bg: #1f2933;
   --primary: #ff4655;
   --primary-dark: #a81f2d;
+  --primary-hover: #ff2b3c;
   --secondary: #c8aa6e;
   --secondary-dark: #bf8116;
   --text: #ece8e1;
@@ -18,13 +19,12 @@
 }
 
 html {
-  flex: 1;
-  height: 100vh;
+  height: 100%;
   background-color: var(--bg-dark);
 }
 
 body {
-  flex: 1;
+  min-height: 100dvh;
   background: radial-gradient(circle at center, #1f2933 0%, var(--bg-dark) 100%);
 }
 

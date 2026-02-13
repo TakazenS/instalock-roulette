@@ -24,12 +24,20 @@
   margin-top: 10px;
 }
 
+.btnWrapper {
+  transition: 0.3s ease-in-out;
+}
+
+.btnWrapper:hover {
+  filter: drop-shadow(0 10px 10px rgba(255, 70, 85, 0.4));
+}
+
 .btn {
   composes: valBtn from '/src/index.css';
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
 }
 
 .btn:hover {
-  background-color: #ff2b3d;
   transform: translateY(-2px);
 }
 
@@ -50,7 +58,7 @@
 }
 
 .btn.reset {
-  background-color: var(--text);
+  background: var(--text);
   color: var(--bg-dark);
 }
 

@@ -75,7 +75,7 @@
 }
 
 .btn:hover {
-  background-color: #ff2b3d;
+  background-color: var(--primary-hover);
   transform: translateY(-2px);
 }
 
@@ -86,6 +86,7 @@
 
 .btn.plus, .btn.less {
   padding: 2px 10px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   clip-path: polygon(50% 0, 100% 0, 100% 70%, 50% 100%, 0 100%, 0 30%);
 }
 

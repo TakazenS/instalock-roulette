@@ -1,9 +1,18 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'wouter';
 
+import { VALORANT_AGENTS } from '../datas.ts';
 import styles from './HomePage.module.css';
 
 export default function HomePage() {
+  useEffect(() => {
+    VALORANT_AGENTS.forEach((agent) => {
+      const img = new Image();
+      img.src = agent.image;
+    });
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -21,13 +30,13 @@ export default function HomePage() {
           <div className={styles.grid}>
             <div className={styles.links}>
               <Link to={'/valorant'} className={styles.valo}>
-                <span className={styles.btnText}>VALORANT</span>
+                <span className={styles.btnText} translate="no">VALORANT</span>
               </Link>
             </div>
 
             <div className={styles.links}>
               <Link to={'/'} className={styles.lol}>
-                <span className={styles.btnText}>LEAGUE OF LEGENDS</span>
+                <span className={styles.btnText} translate="no">LEAGUE OF LEGENDS</span>
                 <span className={styles.badge}>SOON</span>
               </Link>
             </div>

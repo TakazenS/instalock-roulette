@@ -112,11 +112,15 @@
   }
 
   .links {
-    width: 100%;
+    width: 80%;
     max-width: 100%;
   }
 
   .title {
     font-size: 2rem;
+  }
+
+  .valo, .lol {
+    height: 60px;
   }
 }

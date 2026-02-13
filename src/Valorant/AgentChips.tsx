@@ -38,7 +38,7 @@ export default function AgentChips(props: Props) {
           <img src={agent.image} alt={agent.id} className={styles.agentIcon}/>
           <div className={styles.agentInfo}>
             <div className={styles.info}>
-              <p className={styles.name}>{agent.name}</p>
+              <p className={styles.name} translate="no">{agent.name}</p>
               <p className={styles.role}>{agent.role}</p>
             </div>
             <div className={styles.btnContainer}>

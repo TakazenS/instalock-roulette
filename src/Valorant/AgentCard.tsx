@@ -24,10 +24,10 @@ function AgentCard(props: Props) {
         }}
       >
         <div className={styles.imageContainer}>
-          <img className={styles.agentIcon} src={agent.image} alt={agent.id}/>
+          <img className={styles.agentIcon} src={agent.image} alt={agent.id} translate="no"/>
         </div>
         <div className={styles.infoContainer}>
-          <span className={styles.agentName}>{agent.name}</span>
+          <span className={styles.agentName} translate="no">{agent.name}</span>
           <span className={styles.agentRole}>{agent.role}</span>
         </div>
       </div>

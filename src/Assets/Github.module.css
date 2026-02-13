@@ -1,0 +1,50 @@
+.github {
+  z-index: 10;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--val-card-bg) 0%, var(--background) 60%);
+  padding: 10px 15px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text);
+  right: 30px;
+  bottom: 30px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.github:hover {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transform: scale(102%);
+}
+
+.github p {
+  font-size: clamp(1.2rem, 4vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.githubImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.githubImg img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+@media (max-width: 1620px) {
+  .github {
+    position: relative;
+    right: 0;
+    margin: 40px 0 20px 0;
+  }
+}

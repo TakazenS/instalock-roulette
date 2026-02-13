@@ -78,7 +78,7 @@ export default function Settings(props: Props) {
           </div>
           <span className={styles.divider} />
           <div className={styles.timeSettings}>
-            <p className={styles.durationText}>Duration in seconds : {duration}</p>
+            <p className={styles.durationText}>Duration in seconds : <span translate="no">{duration}</span></p>
             <button
               disabled={spinning}
               style={{
@@ -95,6 +95,7 @@ export default function Settings(props: Props) {
                 if (duration === 30) return;
                 setDuration(prev => prev + 1);
               }}
+              translate="no"
             >
               +
             </button>
@@ -114,6 +115,7 @@ export default function Settings(props: Props) {
                 if (duration === 1) return;
                 setDuration(prev => prev - 1);
               }}
+              translate="no"
             >
               -
             </button>
@@ -124,6 +126,7 @@ export default function Settings(props: Props) {
                 ${spinning ? `${styles.disabled}` : ''}
               `}
               onClick={() => setDuration(DEFAULT_DURATION)}
+              translate="no"
             >
               <TbReload className={`${styles.reloadIcon} ${spinning ? `${styles.disabled}` : ''}`} />
             </button>

@@ -10,7 +10,7 @@ export default function NavigationBar() {
           className={styles.link}
           to={'/'}
         >
-          <h1 className={styles.title}>INSTALOCK ROULETTE</h1>
+          <h1 className={styles.title} translate="no">INSTALOCK ROULETTE</h1>
         </Link>
       </div>
     </header>

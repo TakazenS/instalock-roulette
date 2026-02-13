@@ -120,23 +120,25 @@ export default function ValorantPage() {
               </button>
             </div>
           ) : (
-            <button
-              className={`
-                ${styles.btn}
-                ${spinning ? `${styles.disabled}` : ''}
-              `}
-              onClick={handleRandomPick}
-              disabled={spinning}
-            >
-              {spinning ? 'SPINNING...' : 'LOCK IN AGENT'}
-            </button>
+            <div className={`${spinning ? '' : styles.btnWrapper}`}>
+              <button
+                className={`
+                  ${styles.btn}
+                  ${spinning ? `${styles.disabled}` : ''}
+                `}
+                onClick={handleRandomPick}
+                disabled={spinning}
+              >
+                {spinning ? 'HOLD ON...' : 'SPIN THE WHEEL'}
+              </button>
+            </div>
           )}
         </div>
 
         <div className={styles.history}>
           <div>
             {history.length > 0 && (
-              <h2 className={styles.historyTitle}>History</h2>
+              <h2 className={styles.historyTitle}>Historic</h2>
             )}
           </div>
           <div className={styles.historyChips}>
