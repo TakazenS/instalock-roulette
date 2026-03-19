@@ -88,6 +88,12 @@ export const VALORANT_AGENTS: Agent[] = [
     image: `${filePath}/killjoy.png`,
   },
   {
+    id: 'miks',
+    name: 'Miks',
+    role: 'Controller',
+    image: `${filePath}/miks.png`,
+  },
+  {
     id: 'neon',
     name: 'Neon',
     role: 'Duelist',
